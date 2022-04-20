@@ -10,18 +10,11 @@ import androidx.fragment.app.Fragment;
 import com.xinkon.notebook.R;
 
 
-public class targetFragment extends Fragment {
+public class TargetFragment extends Fragment {
 
 
-    public targetFragment() {
+    public TargetFragment() {
 
-    }
-
-
-    // TODO: Rename and change types and number of parameters
-    public static targetFragment newInstance() {
-        targetFragment fragment = new targetFragment();
-        return fragment;
     }
 
     @Override
@@ -31,6 +24,6 @@ public class targetFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_note, container, false);
+        return inflater.inflate(R.layout.fragment_target, container, false);
     }
 }

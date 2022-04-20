@@ -4,31 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:orientation="vertical">
 
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/edit_floatButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginRight="@dimen/dimen_16dp"
-        android:layout_marginBottom="100dp"
-        android:src="@mipmap/edit_add" />
+    <FrameLayout
+        android:id="@+id/frg_edit"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_631dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
 
         <!--大概思路：使用LinearLayout包裹button，图片和文字做成华为记事本的样子
         当点击到LinearLayout则实行事件操作，变图片和文字颜色，并切换fragment-->
         <Button
             android:id="@+id/note"
             android:layout_width="0dp"
-            android:layout_height="100dp"
+            android:layout_height="60dp"
             android:layout_weight="1"
             android:text="笔记">
         </Button>
@@ -36,7 +32,7 @@
         <Button
             android:id="@+id/target"
             android:layout_width="0dp"
-            android:layout_height="100dp"
+            android:layout_height="60dp"
             android:layout_weight="1"
             android:text="代办" />
     </LinearLayout>

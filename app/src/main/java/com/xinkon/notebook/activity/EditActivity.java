@@ -35,6 +35,7 @@ public class EditActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+        et_content.requestFocus();
         //对标题进行事件监听
         et_title.addTextChangedListener(new JumpTextWatcher());
 

@@ -32,7 +32,8 @@
                 android:layout_height="wrap_content"
                 android:text="时间"
                 android:textSize="@dimen/dimen_16sp"
-                android:layout_margin="@dimen/dimen_10dp"/>
+                android:layout_margin="@dimen/dimen_10dp"
+                android:inputType="textNoSuggestions"/>
         </LinearLayout>
 
         <EditText
@@ -42,7 +43,7 @@
             android:layout_margin="@dimen/dimen_10dp"
             android:background="@null"
             android:textSize="@dimen/dimen_24sp"
-            android:text="内容"/>
+            android:inputType="textNoSuggestions"/>
 
     </LinearLayout>
 
