@@ -41,6 +41,7 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        mContext = getActivity();
         initData();
     }
 
@@ -73,8 +74,10 @@ public abstract class BaseFragment extends Fragment {
 
     //跳转
     public void navigateTo(Class cls) {
-        Intent intent = new Intent(getActivity(), cls);
+        Intent intent = new Intent(mContext, cls);
         startActivity(intent);
     }
+
+
 
 }

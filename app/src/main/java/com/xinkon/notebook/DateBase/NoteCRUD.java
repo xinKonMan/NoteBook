@@ -79,18 +79,19 @@ public class NoteCRUD {
 
     //获取所有笔记
     public List<Note> getAllNotes() {
-        Cursor cursor = db.query(NoteDateBase.TBALE_NAME, columns, null, null, null, null, null);
+        Cursor cursor = db.query(NoteDateBase.TBALE_NAME, null, null, null, null, null, null);
 
         List<Note> notes = new ArrayList<>();
         if (cursor.moveToFirst()) {
             do {
                 Note note = new Note();
-                note.setId(cursor.getLong(0));
-                note.setTitle(cursor.getString(1));
-                note.setContent(cursor.getString(2));
-                note.setTime(cursor.getString(3));
-                note.setTag(cursor.getInt(4));
-                note.setCollect(cursor.getInt(5));
+                //cursor.getColumnIndex()获取到下标
+                note.setId(cursor.getLong(cursor.getColumnIndex("id")));
+                note.setTitle(cursor.getString(cursor.getColumnIndex("title")));
+                note.setContent(cursor.getString(cursor.getColumnIndex("content")));
+                note.setTime(cursor.getString(cursor.getColumnIndex("time")));
+                note.setTag(cursor.getInt(cursor.getColumnIndex("mode")));
+                note.setCollect(cursor.getInt(cursor.getColumnIndex("collect")));
                 notes.add(note);
             } while (cursor.moveToNext());
         }
@@ -113,6 +114,5 @@ public class NoteCRUD {
     public void deleteNote(long id) {
         db.delete(NoteDateBase.TBALE_NAME, NoteDateBase.ID + "= ?", new String[]{String.valueOf(id)});
     }
-
 
 }

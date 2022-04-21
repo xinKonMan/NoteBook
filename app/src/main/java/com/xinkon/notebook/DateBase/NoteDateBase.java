@@ -25,12 +25,12 @@ public class NoteDateBase extends SQLiteOpenHelper {
 
 
     public static final String CREATE_NOTE = "CREATE TABLE note("
-            + ID +"integer primary key autoincrement,"
-            + TITLE + "text,"
-            + CONTENT + "text NOT NULL,"
-            + TIME + "text NOT NULL,"
-            + COLLECT + "integer DEFAULT 0,"
-            + MODE + "integer DEFAULT 1)";
+            + ID + "INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + TITLE + "TEXT,"
+            + CONTENT + "TEXT NOT NULL,"
+            + TIME + "TEXT NOT NULL,"
+            + COLLECT + "INTEGER DEFAULT 0,"
+            + MODE + "INTEGER DEFAULT 1)";
 
     public NoteDateBase(Context context) {
         super(context, "note", null, 1);
@@ -38,7 +38,16 @@ public class NoteDateBase extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(CREATE_NOTE);
+        db.execSQL(
+                //只能使用id,不能用字符串代替
+                "CREATE TABLE note ("
+                        + ID + " INTEGER PRIMARY KEY AUTOINCREMENT ,"
+                        + TITLE + " TEXT,"
+                        + CONTENT + " TEXT NOT NULL,"
+                        + TIME + " TEXT NOT NULL,"
+                        + COLLECT + " INTEGER DEFAULT 0,"
+                        + MODE + " INTEGER DEFAULT 1)"
+        );
     }
 
     @Override

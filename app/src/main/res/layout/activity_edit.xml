@@ -43,6 +43,7 @@
             android:layout_margin="@dimen/dimen_10dp"
             android:background="@null"
             android:textSize="@dimen/dimen_24sp"
+            android:text="内容"
             android:inputType="textNoSuggestions"/>
 
     </LinearLayout>
