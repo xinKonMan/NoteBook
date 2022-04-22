@@ -81,6 +81,15 @@ public class Note {
         this.collect = collect;
     }
 
+    public Note(long id, String title, String content, String time, int tag, int collect) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.time = time;
+        this.tag = tag;
+        this.collect = collect;
+    }
+
     @Override
     public String toString() {
         return "Note{" +

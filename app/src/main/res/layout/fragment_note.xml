@@ -10,7 +10,7 @@
         android:id="@+id/rec_edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dimen_10dp"/>
+        />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/edit_floatButton"

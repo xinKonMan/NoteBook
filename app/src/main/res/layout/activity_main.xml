@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,24 +7,32 @@
     tools:context=".MainActivity"
     android:orientation="vertical">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/note_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorWhite"
+        app:titleTextColor="@color/colorBlack"
+        android:theme="@style/AppTheme"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
     <FrameLayout
         android:id="@+id/frg_edit"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_631dp" />
+        android:layout_height="615dp" />
 
     <LinearLayout
+        android:id="@+id/lay_edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true">
+        android:orientation="horizontal">
 
         <!--大概思路：使用LinearLayout包裹button，图片和文字做成华为记事本的样子
         当点击到LinearLayout则实行事件操作，变图片和文字颜色，并切换fragment-->
         <Button
             android:id="@+id/note"
             android:layout_width="0dp"
-            android:layout_height="60dp"
+            android:layout_height="75dp"
             android:layout_weight="1"
             android:text="笔记">
         </Button>
@@ -32,9 +40,9 @@
         <Button
             android:id="@+id/target"
             android:layout_width="0dp"
-            android:layout_height="60dp"
+            android:layout_height="75dp"
             android:layout_weight="1"
             android:text="代办" />
     </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>

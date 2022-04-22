@@ -1,6 +1,8 @@
 package com.xinkon.notebook;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -29,15 +31,14 @@ import java.util.List;
 public class MainActivity extends BaseActivity {
 
 
-
     private NoteFragment noteFragment;
     private TargetFragment targetFragment;
     private Button btn_note;
     private Button btn_target;
 
     private NoteCRUD db;
-    private List<Note> notes = new ArrayList<>();
-    private EditAdapter editAdapter;
+
+    private Toolbar toolbar;
 
 
     @Override
@@ -53,6 +54,8 @@ public class MainActivity extends BaseActivity {
         targetFragment = new TargetFragment();
 
         db = new NoteCRUD(getApplicationContext());
+
+        toolbar = findViewById(R.id.note_toolbar);
 
     }
 
@@ -77,38 +80,51 @@ public class MainActivity extends BaseActivity {
                 getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.frg_edit, targetFragment, null).commitAllowingStateLoss();
             }
         });
-        //创建适配器
-        editAdapter = new EditAdapter(notes);
+
+        setSupportActionBar(toolbar);
+        // setDisplayHomeAsUpEnabled() 方法让导航按钮显示出来
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setHomeButtonEnabled(true);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        String title = data.getStringExtra("title");
-        String content = data.getStringExtra("content");
-        String time = data.getStringExtra("time");
-        Note note = new Note(title, content, time, 1, 0);
-        db.open();
-        db.addNote(note);
-        db.close();
+        int resultMode = data.getIntExtra("resultMode", -1);
+        //获取id值用于保存更新数据,没有获取到id值时则默认为0
+        long node_id = data.getLongExtra("id", 0);
+
+        if (resultMode == 1) {
+            String title = data.getStringExtra("title");
+            String content = data.getStringExtra("content");
+            String time = data.getStringExtra("time");
+            int tag = data.getIntExtra("tag", 1);
+            int collect = data.getIntExtra("collect", 0);
+            Note note = new Note(node_id, title, content, time, tag, collect);
+            db.open();
+            db.updateNote(note);
+            db.close();
+
+        } else if (resultMode == 0) {
+            String title = data.getStringExtra("title");
+            String content = data.getStringExtra("content");
+            String time = data.getStringExtra("time");
+            int tag = data.getIntExtra("tag", 1);
+            int collect = data.getIntExtra("collect", 0);
+            Note note = new Note(title, content, time, tag, collect);
+            db.open();
+            db.addNote(note);
+            db.close();
+        } else {
+
+        }
         noteFragment.refreshRecycleView();
-        Log.d("nice","是否执行");
+
     }
 
-    //刷新数据
-    public void refreshRecycleView() {
-        //调用数据库
-        NoteCRUD db = new NoteCRUD(getApplicationContext());
-        db.open();
-        //有数据先清除
-        if (notes.size() > 0) {
-            notes.clear();
-        }
-        //重新添加数据
-        notes.addAll(db.getAllNotes());
-        db.close();
-        editAdapter.notifyDataSetChanged();
-    }
 
 }
